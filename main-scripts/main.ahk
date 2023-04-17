@@ -73,6 +73,33 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Manipulation of Position and Size of T*
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+#HotIf WinActive("T*")
+
+#Left:: {
+    changeWidth("Left")
+}
+
+#Right:: {
+    changeWidth("Right")
+}
+
+#HotIf
+
+changeWidth(direction) {
+    WinGetPos(&X, , &Width, , "T*")
+
+    if (direction == "Left" && Width < 2000) {
+        WinMove(X - 50, 112, Width + 50, 1478, "T*")
+    } else if (direction == "Right" && Width > 1400) {
+        WinMove(X + 50, 112, Width - 50, 1478, "T*")
+    }
+}
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Manipulation of volume
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
